@@ -1,27 +1,35 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable func-names */
 /* eslint-disable guard-for-in */
-import React, { useState } from 'react';
-import * as JsSearch from 'js-search';
+import React, { useEffect, useState } from 'react';
 import SearchBar from './search-bar';
 import Results from './results';
-
-const data = require('../../itunes.json');
-
-// Create songs list
-const tracks = [];
-for (const track in data[0].Tracks) {
-  tracks.push(data[0].Tracks[track]);
-}
-
-// Create indices
-const searchObj = new JsSearch.Search('Track ID');
-searchObj.addIndex('Artist');
-searchObj.addDocuments(tracks);
+import loadSearch from '../functions';
 
 const Home = (props) => {
   const [results, setResults] = useState([]);
+  const [tracks, setTracks] = useState({});
+  const [idx, setIdx] = useState({});
+
+  useEffect(
+    () => {
+      fetch('../../itunes.json')
+        .then((response) => response.json())
+        .then((json) => {
+          const data = loadSearch(json);
+          setTracks(data.tracks);
+          setIdx(data.idx);
+        });
+    }, [],
+  );
 
   const searchFor = (query) => {
-    setResults(searchObj.search(query));
+    const newRes = [];
+    for (const queryMatch of idx.search(query)) {
+      newRes.push(tracks[queryMatch.ref]);
+    }
+    console.log(newRes);
+    setResults(newRes);
   };
 
   return (

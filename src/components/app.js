@@ -8,10 +8,6 @@ import Home from './home';
 import FallBack from './fallback';
 import Nav from './nav';
 
-const Test = (props) => {
-  return <div> ID: {props.match.params.id} </div>;
-};
-
 const App = (props) => {
   return (
     <Router>
@@ -19,7 +15,7 @@ const App = (props) => {
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/test/:id" component={Test} />
+          <Route exact path="/search/:query" component={Home} />
           <Route component={FallBack} />
         </Switch>
       </div>

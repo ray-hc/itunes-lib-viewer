@@ -11,8 +11,6 @@ See a [demo / our library] here(festive-mclean-66803d.netlify.app).
 * First, you need the XML of your iTunes library. In iTunes Preferences > Advanced, select “Share iTunes Library XML with other applications”. This XML file should appear in your default iTunes folder (for me: Users/Myself/Music/iTunes). 
 * This web-application requires your XML file in JSON format. We used the node module plist-to-json to convert our file in the commandline.
 * Upload the JSON file via a domain you control or a file-sharing service.
-* Replace the json-loc.js file in the directory with:
-
 
 ## Installing
 Replace the json-loc.js file with the following:

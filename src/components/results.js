@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Result from './result';
 
 const Results = (props) => {
   const [currPage, setCurrPage] = useState(1);
@@ -24,14 +23,14 @@ const Results = (props) => {
     if (firstResult > 1) back = true;
     if (back && next) {
       return (
-        <>
+        <div>
           <button onClick={() => setCurrPage(currPage - 1)} type="button">Back</button>
           <button onClick={() => setCurrPage(currPage + 1)} type="button">Next</button>
-        </>
+        </div>
       );
     }
-    if (back) return <button onClick={() => setCurrPage(currPage - 1)} type="button">Back</button>;
-    if (next) return <button onClick={() => setCurrPage(currPage + 1)} type="button">Next</button>;
+    if (back) return <div><button onClick={() => setCurrPage(currPage - 1)} type="button">Back</button></div>;
+    if (next) return <div><button onClick={() => setCurrPage(currPage + 1)} type="button">Next</button></div>;
     return <></>;
   };
 
@@ -40,11 +39,35 @@ const Results = (props) => {
       {numResults()}
       {navButtons()}
       <div>
-        {currResults.map((result) => {
-          return (
-            <Result key={result['Track ID']} result={result} />
-          );
-        })}
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Song <span className="emoji">🎼</span></th>
+              <th>Artist <span className="emoji">👩‍🎤</span></th>
+              <th>Album <span className="emoji">💽</span></th>
+              <th>Genre <span className="emoji">🎷</span></th>
+              <th>Year <span className="emoji">🗓</span></th>
+              <th>Plays <span className="emoji">🎙</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {currResults.map((result) => {
+              const {
+                Name, Artist, Year, Genre, Album,
+              } = result;
+              return (
+                <tr key={result['Track ID']}>
+                  <td>{ Name }</td>
+                  <td>{ Artist }</td>
+                  <td>{ Album }</td>
+                  <td>{ Genre }</td>
+                  <td>{ Year }</td>
+                  <td>{ result['Play Count'] }</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
       {navButtons()}
     </div>

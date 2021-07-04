@@ -58,9 +58,12 @@
     "lunr": "^2.3.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
+    "react-minimal-pie-chart": "^8.2.0",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-tooltip": "^4.2.21",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0"
   }

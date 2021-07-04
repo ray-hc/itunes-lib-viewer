@@ -1,25 +1,67 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable func-names */
+/* eslint-disable guard-for-in */
 import '../style.scss';
 
-import React from 'react';
-import {
-  BrowserRouter as Router, Route, Switch,
-} from 'react-router-dom';
-import Home from './home';
-import FallBack from './fallback';
-import Nav from './nav';
+import React, { useEffect, useState } from 'react';
+import SearchBar from './search-bar';
+import Results from './results';
+import loadLib from '../functions';
+import LibVisualizer from './visualize';
 
 const App = (props) => {
+  const [results, setResults] = useState([]);
+  const [tracks, setTracks] = useState({});
+  const [idx, setIdx] = useState({});
+  const [genres, setGenres] = useState({});
+  const [decades, setDecades] = useState({});
+  const [onSearch, setOnSearch] = useState(true);
+
+  useEffect(
+    () => {
+      fetch('../../itunes.json')
+        .then((response) => response.json())
+        .then((json) => {
+          const data = loadLib(json);
+          setTracks(data.tracks);
+          setIdx(data.idx);
+          setGenres(data.genres);
+          setDecades(data.decades);
+        });
+    }, [],
+  );
+
+  const searchFor = (query) => {
+    const newRes = [];
+    for (const queryMatch of idx.search(query)) {
+      newRes.push(tracks[queryMatch.ref]);
+    }
+    console.log(newRes);
+    setResults(newRes);
+  };
+
+  const showPage = () => {
+    if (idx === {}) return <>Loading</>;
+    return (
+      <>
+        <button onClick={() => setOnSearch(!onSearch)} type="button">{onSearch ? 'See Library Stats' : 'Back to Search'}</button>
+        {onSearch
+          ? (
+            <>
+              <SearchBar searchFor={searchFor} />
+              <Results results={results} />
+            </>
+          )
+          : <LibVisualizer genres={genres} decades={decades} />}
+        }
+      </>
+    );
+  };
+
   return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/search/:query" component={Home} />
-          <Route component={FallBack} />
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      {showPage()}
+    </div>
   );
 };
 

@@ -16,6 +16,7 @@ const App = (props) => {
   const [genres, setGenres] = useState({});
   const [decades, setDecades] = useState({});
   const [onSearch, setOnSearch] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(
     () => {
@@ -27,6 +28,7 @@ const App = (props) => {
           setIdx(data.idx);
           setGenres(data.genres);
           setDecades(data.decades);
+          setLoading(false);
         });
     }, [],
   );
@@ -41,7 +43,7 @@ const App = (props) => {
   };
 
   const showPage = () => {
-    if (idx === {}) return <>Loading</>;
+    if (loading) return <>Loading</>;
     return (
       <>
         <button onClick={() => setOnSearch(!onSearch)} type="button">{onSearch ? 'See Library Stats' : 'Back to Search'}</button>
@@ -53,7 +55,6 @@ const App = (props) => {
             </>
           )
           : <LibVisualizer genres={genres} decades={decades} />}
-        }
       </>
     );
   };

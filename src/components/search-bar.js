@@ -45,29 +45,35 @@ function SearchBar(props) {
     props.searchFor(query);
   };
 
+  const key = (e) => {
+    if (e.key === 'Enter') {
+      doSearch();
+    }
+  };
+
   return (
     <>
       <h1>Search</h1>
       <div className="search-bar">
         <div>
           <LogicPicker setter={setSongNameOp} field="song" op={songNameOp} />
-          <input onChange={(e) => setSongName(e.target.value)} value={songName} placeholder="Song name" type="text" />
+          <input onChange={(e) => setSongName(e.target.value)} value={songName} placeholder="Song name" type="text" onKeyUp={key} />
         </div>
         <div>
           <LogicPicker setter={setArtistOp} field="artist" op={artistOp} />
-          <input onChange={(e) => setArtist(e.target.value)} value={artist} placeholder="Artist" type="text" />
+          <input onChange={(e) => setArtist(e.target.value)} value={artist} placeholder="Artist" type="text" onKeyUp={key} />
         </div>
         <div>
           <LogicPicker setter={setAlbumOp} field="album" op={albumOp} />
-          <input onChange={(e) => setAlbum(e.target.value)} value={album} placeholder="Album" type="text" />
+          <input onChange={(e) => setAlbum(e.target.value)} value={album} placeholder="Album" type="text" onKeyUp={key} />
         </div>
         <div>
           <LogicPicker setter={setGenreOp} field="genre" op={genreOp} />
-          <input onChange={(e) => setGenre(e.target.value)} value={genre} placeholder="Genre" type="text" />
+          <input onChange={(e) => setGenre(e.target.value)} value={genre} placeholder="Genre" type="text" onKeyUp={key} />
         </div>
         <div>
           <LogicPicker setter={setYearOp} field="year" op={yearOp} />
-          <input onChange={(e) => setYear(e.target.value)} value={year} placeholder="Year" type="text" />
+          <input onChange={(e) => setYear(e.target.value)} value={year} placeholder="Year" type="text" onKeyUp={key} />
         </div>
         <button onClick={doSearch} type="button" className="round" aria-label="search"><i className="fas fa-search" /></button>
       </div>

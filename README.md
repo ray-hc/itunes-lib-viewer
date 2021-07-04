@@ -16,7 +16,7 @@ See a [demo / our library] here(festive-mclean-66803d.netlify.app).
 
 ## Installing
 Replace the json-loc.js file with the following:
-`code`
+```
 const JSON_LOC = 'https://your-domain.com/your-json.json';
 export default JSON_LOC;
-`code`
+```

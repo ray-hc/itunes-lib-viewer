@@ -9,6 +9,8 @@ import Results from './results';
 import loadLib from '../functions';
 import LibVisualizer from './visualize';
 
+import JSON_LOC from '../json-loc';
+
 const App = (props) => {
   const [results, setResults] = useState([]);
   const [tracks, setTracks] = useState({});
@@ -20,7 +22,7 @@ const App = (props) => {
 
   useEffect(
     () => {
-      fetch('https://webdcr.com/itunes.json')
+      fetch(JSON_LOC)
         .then((response) => response.json())
         .then((json) => {
           const data = loadLib(json);

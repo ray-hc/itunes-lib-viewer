@@ -1,8 +1,6 @@
-# Ray's Starter Pack
+# iTunes Library Viewer
 
-It's not much to look at, but you can view at: 
-
-[deployed url](https://ecstatic-bhabha-327d98.netlify.app)
+[demo](https://ecstatic-bhabha-327d98.netlify.app)
 
 ## What Worked Well
 Super convenient!

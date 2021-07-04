@@ -20,7 +20,7 @@ const App = (props) => {
 
   useEffect(
     () => {
-      fetch('../../itunes.json')
+      fetch('https://webdcr.com/itunes.json')
         .then((response) => response.json())
         .then((json) => {
           const data = loadLib(json);

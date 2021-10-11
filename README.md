@@ -36,3 +36,6 @@ const JSON_LOC = 'https://your-domain.com/your-json.json';
 export default JSON_LOC;
 ```
 If testing, you can place the `itunes.json` file in the repository and make `JSON_LOC = '../itunes.json'`. If testing, run `npm start`; otherwise, you may use a service like Netlify to host the viewer.
+
+## Issues
+Currently, this site loads your entire iTunes library before displaying search: slow and heavy. In future, will need to dynamically load search results based on queries, perhaps using Express server. 

@@ -1,6 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
-/* eslint-disable func-names */
-/* eslint-disable guard-for-in */
 import '../style.scss';
 
 import React, { useEffect, useState } from 'react';
